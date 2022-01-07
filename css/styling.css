@@ -1,0 +1,16 @@
+.order {
+    margin-right: 30%;
+    position: absolute;
+}
+.homeimage {
+    height: 35vw;
+}
+.sushi {
+    width: 20vw;
+    position: absolute;
+}
+
+.sushi-card {
+    width: 30vw;
+    position: absolute;
+}
