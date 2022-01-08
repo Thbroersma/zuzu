@@ -16,80 +16,101 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 -->
 </head>
-<body class="myBody ">
-    
 
-<div class="card order" style="width: 25rem; margin-left:22rem;">
-<img src="chicken.jpg" class="sushi card-img-top " alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <input type="number" class="form-control" id="telephone" name="phonenumber">
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-<div class="card" style="width: 25rem;">
-<img src="garnaal.jpg" class="sushi card-img-top " alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <input type="number" class="form-control" id="telephone" name="phonenumber">
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-<div class="card text-center" style="width: 25rem;">
-<img src="roll.png" class="sushi card-img-top " alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <input type="number" class="form-control" id="telephone" name="phonenumber">
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-<div class="card text-end" style="width: 25rem;">
-<img src="dragon.png" class="sushi card-img-top " alt="...">
+<?php
+ session_start();
 
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <input type="number" class="form-control" id="telephone" name="phonenumber">
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+?>
+<body class="myOrder">
+<h3 class="card-title">Kies uw gerechten</h3>
+    <p class="card-text">Kies u gerechten en kunt u daarna afrekenen.</p>
+<form method="post" >
+  <div class="row g-2">
+    <div class="col-md-2">
+    
+    </div>
+    <div class="card col-md-4">
+      <img src="img/chicken.jpg" class="sushi card-img-top " alt="...">
+      <div class="card-body ">
+        <h5 class="card-title">Spicy chicken</h5>
+        <input type="number" class="form-control" id="telephone" name="spicy-chicken" min=0 max=100>
+      </div>
+    </div>
+    <div class="card col-md-4">
+    <img src="img/garnaal.jpg" class="sushi card-img-top " alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Garnaal-special</h5>
+        <input type="number" class="form-control" id="telephone" name="garnaal" min=0 max=100>
+      </div>
+    </div>
+    <div class="col-md-2">
+    
+    </div>
+    <div class="col-md-2">
+    
+    </div>
+    <div class="card col-md-4">
+    <img src="img/roll.png" class="sushi card-img-top " alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Crispy chicken</h5>
+        <input type="number" class="form-control" id="telephone" name="crispy-chicken" min=0 max=100>
+      </div>
+    </div>
+    <div class="card col-md-4">
+    <img src="img/dragon.png" class="sushi card-img-top " alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Dragon roll</h5>
+        <input type="number" class="form-control" id="telephone" name="dragon" min=0 max=100>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-12">
+     <div class="card-body ">
+    <h5 class="card-title">Totaal</h5>
+    <p class="card-text">
+      Bestelling voor: <br>
+      <?php
+      
+        echo $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "<br>" . $_SESSION['address'] . "<br>" . $_SESSION['postcode'] . " " . $_SESSION['city'];
+      ?>
+    </p>
+    <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
+   
   </div>
 </div>
-<?php/*
-    try {
-        $pdo = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
-        if (isset($_POST['customer'])) {
-            $firstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_STRING);
-            $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING);
-            $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_STRING);
-            $postcode = filter_input(INPUT_POST, "postcode", FILTER_SANITIZE_STRING);
-            $city = filter_input(INPUT_POST, "city", FILTER_SANITIZE_STRING);
-            $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_STRING);
-            $phonenumber = filter_input(INPUT_POST, "phonenumber", FILTER_SANITIZE_STRING);
-            
-            $sth = $pdo->prepare('INSERT INTO customer (id, firstname, lastname, address, postcode, city, email, phonenumber) 
-            VALUES(:id, :firstname, :lastname, :address, :postcode, :city, :email, :phonenumber)');
-            $sth->bindParam("id", $id);      
-            $sth->bindParam("firstname", $firstname);
-            $sth->bindParam("lastname", $lastname);
-            $sth->bindParam("address", $address);
-            $sth->bindParam("postcode", $postcode);
-            $sth->bindParam("city", $city);
-            $sth->bindParam("email", $email);
-            $sth->bindParam("phonenumber", $phonenumber);
-            if ($sth->execute()) {
-                echo "Uw gegevens zijn aangekomen, u kunt nu uw gerechten kiezen!";
-                header
-            }
-            else {
-                echo "Er is een fout opgetreden";
-            }
-        }  
-    } 
-    catch(PDOExeption $e) {
-        die("Error!: " . $e->getMessage());
-    }
-        */
-    
+</form>
+<?php
+  try {
+    $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
+    if (isset($_POST['volgende'])) {
+      $spicychicken = filter_input(INPUT_POST, "spicy-chicken", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+      $garnaal = filter_input(INPUT_POST, "garnaal", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+      $crispychicken = filter_input(INPUT_POST, "crispy-chicken", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+      $dragon = filter_input(INPUT_POST, "dragon", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+      $customerId = $_SESSION["id"];
+      $query = $db->prepare("INSERT INTO order(order-id, spicy-chicken, garnaal, crispy-chicken, dragon, customer-id) 
+      VALUES(:order-id, :spicy-chicken, :garnaal, :crispy-chicken, :dragon, :customer-id)");
+      $query->bindParam("order-id", $id);      
+      $query->bindParam("spicy-chicken", $spicychicken);
+      $query->bindParam("garnaal", $garnaal);
+      $query->bindParam("crispy-chicken", $crispychicken);
+      $query->bindParam("dragon", $dragon);
+      $query->bindParam("customer-id", $customerId);
+
+      if ($query->execute()) {
+        echo "Uw gegevens zijn aangekomen, u kunt gaan afrekenen";
+
+      }
+      else {
+        echo "Er is een fout opgetreden";
+      }
+    }  
+  } 
+  catch(PDOExeption $e) {
+      die("Error!: " . $e->getMessage());
+  }   
     //include_once('defaults/users/menu.php');
-    
     ?>  
+    
 </body>
 </html>

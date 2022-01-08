@@ -19,7 +19,7 @@
 <body class="myBody ">
     
     <div class="card mb-12">
-  <img src="sushicard.jpg" class="card-img-top homeimage" alt="...">
+  <img src="img/sushicard.jpg" class="card-img-top homeimage" alt="...">
   <div class="card-body">
     <h5 class="card-title">Uw bestelling</h5>
     <p class="card-text">Vul uw gegevens in en op de volgende pagina kunt u uw gerechten selecteren.</p>
@@ -84,7 +84,14 @@
             $sth->bindParam("phonenumber", $phonenumber);
             if ($sth->execute()) {
                 echo "Uw gegevens zijn aangekomen, u kunt nu uw gerechten kiezen!";
-                
+                session_start();
+                $_SESSION['id'] = $id;
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
+                $_SESSION['address'] = $address;
+                $_SESSION['postcode'] = $postcode;
+                $_SESSION['city'] = $city;
+                header("Location: order.php");
             }
             else {
                 echo "Er is een fout opgetreden";

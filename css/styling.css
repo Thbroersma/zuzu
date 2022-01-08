@@ -1,13 +1,11 @@
 .order {
     margin-right: 30%;
-    position: absolute;
 }
 .homeimage {
     height: 35vw;
 }
-.sushi {
-    width: 20vw;
-    position: absolute;
+.myOrder {
+    text-align: center;
 }
 
 .sushi-card {
