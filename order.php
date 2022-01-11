@@ -27,7 +27,21 @@
 <form method="post" >
   <div class="row g-2">
     <div class="col-md-2">
-    
+    <?php 
+    $result = include_once("database/sushiSelect.php");
+    echo "<form method='post' action='total.php'>";
+    foreach ($result as &$data) {
+      echo "<div class='card col-md-4'>";
+      echo "<img src='" . $data['img'] . "' class='sushi card-img-top'>";
+      echo "<div class='card-body'>";
+      echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
+      echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "</div>
+            </div>";
+    }
+    echo "<input type='submit' value='Verzenden' name='submit'>";
+    echo "</form>";
+    ?>
     </div>
     <div class="card col-md-4">
       <img src="img/chicken.jpg" class="sushi card-img-top " alt="...">
@@ -36,34 +50,7 @@
         <input type="number" class="form-control" id="telephone" name="spicy-chicken" min=0 max=100>
       </div>
     </div>
-    <div class="card col-md-4">
-    <img src="img/garnaal.jpg" class="sushi card-img-top " alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Garnaal-special</h5>
-        <input type="number" class="form-control" id="telephone" name="garnaal" min=0 max=100>
-      </div>
-    </div>
-    <div class="col-md-2">
-    
-    </div>
-    <div class="col-md-2">
-    
-    </div>
-    <div class="card col-md-4">
-    <img src="img/roll.png" class="sushi card-img-top " alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Crispy chicken</h5>
-        <input type="number" class="form-control" id="telephone" name="crispy-chicken" min=0 max=100>
-      </div>
-    </div>
-    <div class="card col-md-4">
-    <img src="img/dragon.png" class="sushi card-img-top " alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Dragon roll</h5>
-        <input type="number" class="form-control" id="telephone" name="dragon" min=0 max=100>
-      </div>
-    </div>
-  </div>
+ 
   <div class="card col-md-12">
      <div class="card-body ">
     <h5 class="card-title">Totaal</h5>
@@ -79,38 +66,7 @@
   </div>
 </div>
 </form>
-<?php
-  try {
-    $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
-    if (isset($_POST['volgende'])) {
-      $spicychicken = filter_input(INPUT_POST, "spicy-chicken", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-      $garnaal = filter_input(INPUT_POST, "garnaal", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-      $crispychicken = filter_input(INPUT_POST, "crispy-chicken", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-      $dragon = filter_input(INPUT_POST, "dragon", FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-      $customerId = $_SESSION["id"];
-      $query = $db->prepare("INSERT INTO order(order-id, spicy-chicken, garnaal, crispy-chicken, dragon, customer-id) 
-      VALUES(:order-id, :spicy-chicken, :garnaal, :crispy-chicken, :dragon, :customer-id)");
-      $query->bindParam("order-id", $id);      
-      $query->bindParam("spicy-chicken", $spicychicken);
-      $query->bindParam("garnaal", $garnaal);
-      $query->bindParam("crispy-chicken", $crispychicken);
-      $query->bindParam("dragon", $dragon);
-      $query->bindParam("customer-id", $customerId);
 
-      if ($query->execute()) {
-        echo "Uw gegevens zijn aangekomen, u kunt gaan afrekenen";
-
-      }
-      else {
-        echo "Er is een fout opgetreden";
-      }
-    }  
-  } 
-  catch(PDOExeption $e) {
-      die("Error!: " . $e->getMessage());
-  }   
-    //include_once('defaults/users/menu.php');
-    ?>  
     
 </body>
 </html>
