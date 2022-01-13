@@ -30,7 +30,11 @@
     echo "<label class='info'>Adres: </label><label> " . $_SESSION['address'] . "</label><br>";
     echo "<label class='info'>Postcode + plaats: </label><label> " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</label><br>";
     
-    
+    echo "<p> &#8364; " . $_SESSION['chicken'] . "</p>";
+    echo "<p> &#8364; " . $_SESSION['garnaal'] . "</p>";
+    echo "<p> &#8364; " . $_SESSION['dragon'] . "</p>";
+    echo "<p> &#8364; " .  $_SESSION['roll'] . "</p>";
+    echo "<p>Totaal &#8364; " .  $_SESSION['total'] . "</p>";
 
     ?>
 </div>

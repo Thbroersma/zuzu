@@ -36,7 +36,7 @@
       echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
-      echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "<input type='number' name='" . $data['id'] . "'min=0 max=" . $data['amount'] . "> <br>";
       echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
             </div>";
@@ -51,7 +51,7 @@
       echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
-      echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "<input type='number' name='" . $data['id'] . "'min=0 max=" . $data['amount'] . "> <br>";
       echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
             </div><br>";
@@ -77,7 +77,8 @@
         $_SESSION['dragon'] = $_POST['3'] * $sushi['price'];
         $_SESSION['roll'] = $_POST['4'] * $sushi['price'];
         $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
-        echo "<p>" . $sushi['name'] . " " . $_POST['1'] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
+        $_SESSION['spicy'] = $sushi['name'];
+        echo "<p>" . $_SESSION['spicy'] . " " . $_POST['1'] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['2'] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['3'] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['4'] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
@@ -92,7 +93,7 @@
     <?php
     $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
     if (isset($_POST['volgende'])) {
-      $id = 1;
+      /*$id = 1;
       $newAmount = 10 - 5;
       $query = $db->prepare("UPDATE order SET $newAmount = :amount WHERE id =:id");
       $query->bindParam("amount", $newAmount);
@@ -101,8 +102,8 @@
         echo "De hoeveelheid is aangepast";
       } else {
         echo "Er is een fout opgetreden";
-        }
-      //header(Location: total.php);
+        }*/
+      header("Location: total.php");
     }
     ?>
   </div>
