@@ -1,9 +1,15 @@
 .dragon {
-    width: 30vw;
-    height: 25vw;
+    width: 23vw;
+    height: 18vw;
 }
 .homeimage {
     height: 35vw;
+}
+.info {
+    text-align: left;
+}
+.left {
+    float: left;
 }
 .myOrder {
     text-align: center;
@@ -14,7 +20,13 @@
 .price {
     width: 20%;
 }
+.right {
+    float: right;
+}
 .sushi-card {
     width: 30vw;
     position: absolute;
+}
+.total {
+    margin-left: 30%;
 }

@@ -37,6 +37,7 @@
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
       echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
             </div>";
     }
@@ -51,36 +52,59 @@
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
       echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
-            </div>";
+            </div><br>";
     }
-    echo "<input type='submit' value='Berekenen' name='calculate' class='price'>";
+    echo "<div class='col-md-12'><input type='submit' value='Berekenen' name='calculate' class='price'></div>";
     echo "</form>";
     ?>
   <div class="card col-md-12">
      <div class="card-body ">
     <h5 class="card-title">Totaal</h5>
+    <div class="left">
     <p class="card-text">
-      Bestelling voor: <br>
+      De bestelling: <br>
       <?php
-      $sushi = include_once("database/sushiSelect.php");
-      if (isset($_POST['calculate'])) {
-        echo $sushi['price'];
-        echo $_POST['1'] . "<br>";
-        echo $_POST['2'] . "<br>";
-        echo $_POST['3'] . "<br>";
-        echo $_POST['4'] . "<br>";
-        $price = $_POST['1'] * $result['price'];
-        
-        echo $price;
+      $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
+      
+      if (isset($_POST['calculate'])) { 
+        $query = $db->prepare("SELECT price, name FROM sushi");
+        $query->execute();
+        $sushi = $query->fetch(PDO::FETCH_ASSOC);   
+        $_SESSION['chicken'] = $_POST['1'] * $sushi['price'];
+        $_SESSION['garnaal'] = $_POST['2'] * $sushi['price'];
+        $_SESSION['dragon'] = $_POST['3'] * $sushi['price'];
+        $_SESSION['roll'] = $_POST['4'] * $sushi['price'];
+        $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
+        echo "<p>" . $sushi['name'] . " " . $_POST['1'] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
+        echo "<p>" . $sushi['name'] . " " . $_POST['2'] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
+        echo "<p>" . $sushi['name'] . " " . $_POST['3'] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
+        echo "<p>" . $sushi['name'] . " " . $_POST['4'] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
+        echo "Totaal &#8364; " . $_SESSION['total'];
       }
-        echo $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "<br>" . $_SESSION['address'] . 
-        "<br>" . $_SESSION['postcode'] . " " . $_SESSION['city'];
+        echo "</div>
+              <div class='right'>";
+        
       ?>
     </p>
-    <a href="total.php">
-      <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
-    </a>
+    <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
+    <?php
+    $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
+    if (isset($_POST['volgende'])) {
+      $id = 1;
+      $newAmount = 10 - 5;
+      $query = $db->prepare("UPDATE order SET $newAmount = :amount WHERE id =:id");
+      $query->bindParam("amount", $newAmount);
+      $query->bindParam("id", $id);
+      if($query->execute()) {
+        echo "De hoeveelheid is aangepast";
+      } else {
+        echo "Er is een fout opgetreden";
+        }
+      //header(Location: total.php);
+    }
+    ?>
   </div>
 </div>
 </form>

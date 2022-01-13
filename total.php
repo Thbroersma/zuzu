@@ -23,6 +23,16 @@
 ?>
 <body class="myOrder">
 <h2>Uw totale bestelling</h2>
+<div class="col-md-5 total">
+    <br>
+    <?php 
+    echo "<label class='info'>Naam: </label><label> " . $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "</label><br>";
+    echo "<label class='info'>Adres: </label><label> " . $_SESSION['address'] . "</label><br>";
+    echo "<label class='info'>Postcode + plaats: </label><label> " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</label><br>";
+    
+    
 
+    ?>
+</div>
 </body>
 </html>
