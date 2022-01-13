@@ -26,43 +26,61 @@
     <p class="card-text">Kies u gerechten en kunt u daarna afrekenen.</p>
 <form method="post" >
   <div class="row g-2">
-    <div class="col-md-2">
+    <div class="col-md-3">
+    </div>
     <?php 
     $result = include_once("database/sushiSelect.php");
     echo "<form method='post' action='total.php'>";
     foreach ($result as &$data) {
-      echo "<div class='card col-md-4'>";
-      echo "<img src='" . $data['img'] . "' class='sushi card-img-top'>";
+      echo "<div class='card col-md-3'>";
+      echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
       echo "<input type='number' name='" . $data['id'] . "'> <br>";
       echo "</div>
             </div>";
     }
-    echo "<input type='submit' value='Verzenden' name='submit'>";
+    echo "<div class='col-md-3'>
+          </div>
+          <div class='col-md-3'>
+          </div>";
+    $results = include_once("database/sushiSelectTwo.php");
+    foreach ($results as &$data) {
+      echo "<div class='card col-md-3'>";
+      echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
+      echo "<div class='card-body'>";
+      echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
+      echo "<input type='number' name='" . $data['id'] . "'> <br>";
+      echo "</div>
+            </div>";
+    }
+    echo "<input type='submit' value='Berekenen' name='calculate' class='price'>";
     echo "</form>";
     ?>
-    </div>
-    <div class="card col-md-4">
-      <img src="img/chicken.jpg" class="sushi card-img-top " alt="...">
-      <div class="card-body ">
-        <h5 class="card-title">Spicy chicken</h5>
-        <input type="number" class="form-control" id="telephone" name="spicy-chicken" min=0 max=100>
-      </div>
-    </div>
- 
   <div class="card col-md-12">
      <div class="card-body ">
     <h5 class="card-title">Totaal</h5>
     <p class="card-text">
       Bestelling voor: <br>
       <?php
-      
-        echo $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "<br>" . $_SESSION['address'] . "<br>" . $_SESSION['postcode'] . " " . $_SESSION['city'];
+      $sushi = include_once("database/sushiSelect.php");
+      if (isset($_POST['calculate'])) {
+        echo $sushi['price'];
+        echo $_POST['1'] . "<br>";
+        echo $_POST['2'] . "<br>";
+        echo $_POST['3'] . "<br>";
+        echo $_POST['4'] . "<br>";
+        $price = $_POST['1'] * $result['price'];
+        
+        echo $price;
+      }
+        echo $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "<br>" . $_SESSION['address'] . 
+        "<br>" . $_SESSION['postcode'] . " " . $_SESSION['city'];
       ?>
     </p>
-    <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
-   
+    <a href="total.php">
+      <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
+    </a>
   </div>
 </div>
 </form>

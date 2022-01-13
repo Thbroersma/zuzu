@@ -1,5 +1,6 @@
-.order {
-    margin-right: 30%;
+.dragon {
+    width: 30vw;
+    height: 25vw;
 }
 .homeimage {
     height: 35vw;
@@ -7,7 +8,12 @@
 .myOrder {
     text-align: center;
 }
-
+.order {
+    margin-right: 30%;
+}
+.price {
+    width: 20%;
+}
 .sushi-card {
     width: 30vw;
     position: absolute;
