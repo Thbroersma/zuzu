@@ -4,7 +4,7 @@
     $query = $db->prepare("SELECT id, name, img, class, price, amount FROM sushi WHERE id > 2");
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
+    return $result; 
     }  
    
   catch(PDOExeption $e) {

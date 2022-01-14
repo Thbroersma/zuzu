@@ -20,46 +20,56 @@
     
     <div class="card mb-12">
   <img src="img/sushicard.jpg" class="card-img-top homeimage" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Uw bestelling</h5>
-    <p class="card-text">Vul uw gegevens in en op de volgende pagina kunt u uw gerechten selecteren.</p>
-    <form class="row g-3" method="post">
-  <div class="col-md-3">
-    <label for="inputEmail4" class="form-label">Voornaam</label>
-    <input type="text" class="form-control" id="inputEmail4" name="firstname" required>
-  </div>
-  <div class="col-md-3">
-    <label for="inputPassword4" class="form-label">Achternaam</label>
-    <input type="text" class="form-control" id="inputPassword4" name="lastname" required>
-  </div><br><br>
-  <div class="col-3">
-    <label for="inputAddress" class="form-label">Adres</label>
-    <input type="text" class="form-control" id="inputAddress"  name="address" required>
-  </div>
-  <div class="col-1">
-    <label for="inputAddress2" class="form-label">Postcode</label>
-    <input type="text" class="form-control" id="inputAddress2" name="postcode" required>
-  </div>
-  <div class="col-md-3">
-    <label for="inputCity" class="form-label">Stad</label>
-    <input type="text" class="form-control" id="inputCity" name="city" required>
-  </div>
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">Telefoonnummer</label>
-    <input type="text" class="form-control" id="telephone" name="phonenumber">
+  <div class="col-md-7 form">
+    <div class="card-body">
+      <h5 class="card-title">Uw bestelling</h5>
+      <p class="card-text">Vul uw gegevens in en op de volgende pagina kunt u uw gerechten selecteren.</p>
+      <form class="row g-3" method="post">
+    <div class="col-md-5">
+      <label for="inputEmail4" class="form-label">Voornaam</label>
+      <input type="text" class="form-control" id="inputEmail4" name="firstname" required>
+    </div>
+    <div class="col-md-4">
+      <label for="inputPassword4" class="form-label">Achternaam</label>
+      <input type="text" class="form-control" id="inputPassword4" name="lastname" required>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-5">
+      <label for="inputAddress" class="form-label">Adres</label>
+      <input type="text" class="form-control" id="inputAddress"  name="address" required>
+    </div>
+    <div class="col-2">
+      <label for="inputAddress2" class="form-label">Postcode</label>
+      <input type="text" class="form-control" id="inputAddress2" name="postcode" required>
+    </div>
+    <div class="col-md-1">
 
   </div>
-  <div class="col-md-3">
-    <label for="inputZip" class="form-label">Emailadress</label>
-    <input type="email" class="form-control" id="inputZip" name="email" required>
+    <div class="col-md-5 city">
+      <label for="inputCity" class="form-label">Stad</label>
+      <input type="text" class="form-control" id="inputCity" name="city" required>
+    </div>
+    
+    <div class="col-md-3">
+      <label for="inputState" class="form-label">Telefoonnummer</label>
+      <input type="text" class="form-control" id="telephone" name="phonenumber">
+
+    </div>
+    <div class="col-md-5">
+      <label for="inputZip" class="form-label">Emailadress</label>
+      <input type="email" class="form-control" id="inputZip" name="email" required>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" name="customer">Volgende</button>
+    </div>
+  </form>
+      <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+    </div>
   </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary" name="customer">Volgende</button>
   </div>
-</form>
-    <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
-  </div>
-</div>
+  
 <?php
     try {
         $pdo = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");

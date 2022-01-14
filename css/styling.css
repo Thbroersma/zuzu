@@ -1,9 +1,15 @@
 body {
     background-color: beige;
 }
+.city {
+    margin-right: 30vw;
+}
 .dragon {
     width: 23vw;
     height: 18vw;
+}
+.form {
+    margin-left: 30%;
 }
 .homeimage {
     height: 35vw;
