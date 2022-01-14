@@ -56,16 +56,12 @@
       echo "</div>
             </div><br>";
     }
-    echo "<div class='col-md-12'><input type='submit' value='Berekenen' name='calculate' class='price'></div>";
-    echo "</form>";
-    ?>
-  <div class="card col-md-12">
-     <div class="card-body ">
-    <h5 class="card-title">Totaal</h5>
-    <div class="left">
-    <p class="card-text">
-      De bestelling: <br>
-      <?php
+    echo "<div class='col-md-1'>
+          </div>
+          
+      <div class='card col-md-2 totalOrder'>
+      <h4>De bestelling:</h4> <br>";
+      
       $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
       
       if (isset($_POST['calculate'])) { 
@@ -78,18 +74,25 @@
         $_SESSION['roll'] = $_POST['4'] * $sushi['price'];
         $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
         $_SESSION['spicy'] = $sushi['name'];
+        
+        
         echo "<p>" . $_SESSION['spicy'] . " " . $_POST['1'] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['2'] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['3'] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
         echo "<p>" . $sushi['name'] . " " . $_POST['4'] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
         echo "Totaal &#8364; " . $_SESSION['total'];
+        echo "</div>";
       }
-        echo "</div>
-              <div class='right'>";
         
-      ?>
-    </p>
-    <input type="submit" class="form-control" id="telephone" name="volgende" value="Ga naar afrekenen">
+    
+    
+    echo "<div class='col-md-12'><input type='submit' value='Berekenen' name='calculate' class='price'></div>";
+    echo "</form>";
+    ?>
+  <div class="card col-md-12">
+     <div class="card-body ">
+    
+    <input type="submit" class="form-control submit" id="telephone" name="volgende" value="Ga naar afrekenen">
     <?php
     $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
     if (isset($_POST['volgende'])) {

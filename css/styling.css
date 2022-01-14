@@ -1,5 +1,5 @@
 body {
-    background-color: beige;
+    background-color: rgb(230, 178, 162);
 }
 .city {
     margin-right: 30vw;
@@ -9,7 +9,7 @@ body {
     height: 18vw;
 }
 .form {
-    margin-left: 30%;
+    margin-left: 25%;
 }
 .homeimage {
     height: 35vw;
@@ -32,10 +32,16 @@ body {
 .right {
     float: right;
 }
+.submit {
+    width: 50%;
+}
 .sushi-card {
     width: 30vw;
     position: absolute;
 }
 .total {
     margin-left: 30%;
+}
+.totalOrder {
+    height: 20vw;
 }
