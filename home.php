@@ -11,7 +11,7 @@
 </head>
 <body class="myBody ">
     
-    <div class="card mb-12">
+<div class="card mb-12 homeForm">
   <img src="img/sushicard.jpg" class="card-img-top homeimage" alt="...">
   <div class="col-md-7 form">
     <div class="card-body">

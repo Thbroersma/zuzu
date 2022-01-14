@@ -18,8 +18,8 @@
 </head>
 
 <?php
- session_start();
-
+  session_start();
+  $_SESSION['order'] = false;
 ?>
 <body class="myOrder">
 <h3 class="card-title">Kies uw gerechten</h3>
@@ -29,63 +29,85 @@
     <div class="col-md-3">
     </div>
     <?php 
-    $result = include_once("database/sushiSelect.php");
+    $sush = include_once("database/sushiSelect.php");
     echo "<form method='post' action='total.php'>";
-    foreach ($result as &$data) {
+    foreach ($sush as &$data) {
       echo "<div class='card col-md-3'>";
       echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
-      echo "<input type='number' name='" . $data['id'] . "'min=0 max=" . $data['amount'] . "> <br>";
+      echo "<input type='number' name='" . $data['id'] . "'min=0 max='" . $data['amount'] . "'value=0> <br>";
       echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
             </div>";
     }
     echo "<div class='col-md-3'>
-          </div>
-          <div class='col-md-3'>
+          </div><div class='col-md-3'>
           </div>";
-    $results = include_once("database/sushiSelectTwo.php");
-    foreach ($results as &$data) {
+    $sushis = include_once("database/sushiSelectTwo.php");
+    foreach ($sushis as &$data) {
       echo "<div class='card col-md-3'>";
       echo "<img src='" . $data['img'] . "' class='sushi card-img-top " . $data['class'] . "'>";
       echo "<div class='card-body'>";
       echo "<h5 class='card-title'>" . $data['name'] . "</h5>";
-      echo "<input type='number' name='" . $data['id'] . "'min=0 max=" . $data['amount'] . "> <br>";
+      echo "<input type='number' name='" . $data['id'] . "'min=0 max='" . $data['amount'] . "'value=0> <br>";
       echo "<p>&#8364; " . $data['price'] ."</p>";
       echo "</div>
             </div><br>";
     }
-    echo "<div class='col-md-1'>
-          </div>
+    echo "<div class='col-md-3'>
+          </div>";
+      
+    
+    if (isset($_POST['calculate'])) { 
+      $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
+      $query = $db->prepare("SELECT id, name, price FROM sushi");
+      $query->execute();
+      $result = $query->fetchAll(PDO::FETCH_ASSOC);/*
+      $query = $db->prepare("SELECT name, price FROM sushi");
+      $query->execute();
+      $sushi = $query->fetchAll(PDO::FETCH_ASSOC);   
+      $i = 1;
+        $_SESSION['chicken'] = $_POST['1'] * $data['price'];
+        $_SESSION['garnaal'] = $_POST['2'] * $data['price'];
+        $_SESSION['dragon'] = $_POST['3'] * $data['price'];
+        $_SESSION['roll'] = $_POST['4'] * $data['price'];
+        $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
+        $_SESSION['spicy'] = $data['name'];
+        echo "  
+        <div class='card col-md-2 totalOrder'>
+        <h4>De bestelling:</h4> <br>";
+          echo "<p>" . $_SESSION['spicy'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
+          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
+          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
+          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
+          echo "Totaal &#8364; " . $_SESSION['total'];
+          echo "</div>";
           
+      */
+      echo "  
       <div class='card col-md-2 totalOrder'>
       <h4>De bestelling:</h4> <br>";
-      
-      $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
-      
-      if (isset($_POST['calculate'])) { 
-        $query = $db->prepare("SELECT price, name FROM sushi");
-        $query->execute();
-        $sushi = $query->fetch(PDO::FETCH_ASSOC);   
-        $_SESSION['chicken'] = $_POST['1'] * $sushi['price'];
-        $_SESSION['garnaal'] = $_POST['2'] * $sushi['price'];
-        $_SESSION['dragon'] = $_POST['3'] * $sushi['price'];
-        $_SESSION['roll'] = $_POST['4'] * $sushi['price'];
+        foreach($result as &$data) {
+          $i = 2;
+          $_SESSION['chicken'] = $_POST['1'] * $data['price'];
+          $_SESSION['garnaal'] = $_POST['2'] * $data['price'];
+          $_SESSION['dragon'] = $_POST['3'] * $data['price'];
+          $_SESSION['roll'] = $_POST['4'] * $data['price'];
         $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
-        $_SESSION['spicy'] = $sushi['name'];
-        
-        
-        echo "<p>" . $_SESSION['spicy'] . " " . $_POST['1'] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
-        echo "<p>" . $sushi['name'] . " " . $_POST['2'] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
-        echo "<p>" . $sushi['name'] . " " . $_POST['3'] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
-        echo "<p>" . $sushi['name'] . " " . $_POST['4'] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
-        echo "Totaal &#8364; " . $_SESSION['total'];
-        echo "</div>";
+        $_SESSION['spicy'] = $data['name'];
+        echo "<p>" . $data['name'] . " " . $_POST[1] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
+        $i = $i + 1;
+        }      
+      echo "<p class='totalBalance'>Totaal &#8364; " . $_SESSION['total'] . "</p>";
+      echo "</div>";
+      } else {
+        echo "  
+      <div class='card col-md-2 totalOrder'>
+      <h4>De bestelling:</h4> <br>";
+      echo "Totaal &#8364; " . $_SESSION['total'];
+      echo "</div>";
       }
-        
-    
-    
     echo "<div class='col-md-12'><input type='submit' value='Berekenen' name='calculate' class='price'></div>";
     echo "</form>";
     ?>
@@ -106,6 +128,7 @@
       } else {
         echo "Er is een fout opgetreden";
         }*/
+      $_SESSION['order'] = true;
       header("Location: total.php");
     }
     ?>
