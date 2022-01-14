@@ -99,13 +99,13 @@
         echo "<p>" . $data['name'] . " " . $_POST[1] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
         $i = $i + 1;
         }      
-      echo "<p class='totalBalance'>Totaal &#8364; " . $_SESSION['total'] . "</p>";
+      echo "<p>Totaal &#8364; " . $_SESSION['total'] . "</p>";
       echo "</div>";
       } else {
         echo "  
       <div class='card col-md-2 totalOrder'>
-      <h4>De bestelling:</h4> <br>";
-      echo "Totaal &#8364; " . $_SESSION['total'];
+      <h4 class='totalBalance'>De bestelling:</h4> <br>";
+      echo "Totaal &#8364; 0";
       echo "</div>";
       }
     echo "<div class='col-md-12'><input type='submit' value='Berekenen' name='calculate' class='price'></div>";

@@ -17,23 +17,26 @@
     <br>
     <?php 
     if ($_SESSION['order'] == true) {
-        echo "<label class='info'>Naam: </label><label> " . $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "</label><br>";
-        echo "<label class='info'>Adres: </label><label> " . $_SESSION['address'] . "</label><br>";
-        echo "<label class='info'>Postcode + plaats: </label><label> " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</label><br>";
+        echo "<h5 class='info'>Uw gegevens</h5>";
+        echo "<p class='info'>Naam: " . $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "</p>";
+        echo "<p class='info'>Adres: " . $_SESSION['address'] . "</p>";
+        echo "<p class='info'>Postcode + plaats: " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</p>";
         
-        echo "<p>" . $_SESSION['spicy'] . " &#8364; " . $_SESSION['chicken'] . "</p>";
-        echo "<p> &#8364; " . $_SESSION['garnaal'] . "</p>";
-        echo "<p> &#8364; " . $_SESSION['dragon'] . "</p>";
-        echo "<p> &#8364; " .  $_SESSION['roll'] . "</p>";
-        echo "<p>Totaal &#8364; " .  $_SESSION['total'] . "</p>";
+        echo "<p class='info'>Spicy chicken &#8364; " . $_SESSION['chicken'] . "</p>";
+        echo "<p class='info'>Spicy garnaal &#8364; " . $_SESSION['garnaal'] . "</p>";
+        echo "<p class='info'>Dragon roll &#8364; " . $_SESSION['dragon'] . "</p>";
+        echo "<p class='info'>Chicken roll &#8364; " .  $_SESSION['roll'] . "</p>";
+        echo "<p class='info'>Totaal &#8364; " .  $_SESSION['total'] . "</p>";
     } else {
+        echo "<h5 class='info'>Uw gegevens</h5>";
         echo "<label class='info'>Naam: </label><label></label><br>";
         echo "<label class='info'>Adres: </label><label></label><br>";
         echo "<label class='info'>Postcode + plaats: </label><label></label><br>";
-        echo "<p class='info'> &#8364; </p>";
-        echo "<p class='info'> &#8364; </p>";
-        echo "<p class='info'> &#8364; </p>";
-        echo "<p class='info'> &#8364; </p>";
+        echo "<h5 class='info'>Uw gerechten</h5>";
+        echo "<p class='info'>Spicy chicken &#8364; </p>";
+        echo "<p class='info'>Spicy garnaal &#8364; </p>";
+        echo "<p class='info'>Dragon roll &#8364; </p>";
+        echo "<p class='info'>Chicken roll &#8364; </p>";
         echo "<p class='info'>Totaal &#8364; </p>";
     }
     
