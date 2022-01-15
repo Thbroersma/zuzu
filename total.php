@@ -22,7 +22,7 @@
         echo "<p class='info'>Adres: " . $_SESSION['address'] . "</p>";
         echo "<p class='info'>Postcode + plaats: " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</p>";
         
-        echo "<p class='info'>Spicy chicken &#8364; " . $_SESSION['chicken'] . "</p>";
+        echo "<p class='info'>Spicy chicken " . $_SESSION['chickenAmount'] . " &#8364; " . $_SESSION['chicken'] . "</p>";
         echo "<p class='info'>Spicy garnaal &#8364; " . $_SESSION['garnaal'] . "</p>";
         echo "<p class='info'>Dragon roll &#8364; " . $_SESSION['dragon'] . "</p>";
         echo "<p class='info'>Chicken roll &#8364; " .  $_SESSION['roll'] . "</p>";

@@ -57,48 +57,27 @@
     }
     echo "<div class='col-md-3'>
           </div>";
-      
-    
     if (isset($_POST['calculate'])) { 
       $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
       $query = $db->prepare("SELECT id, name, price FROM sushi");
       $query->execute();
-      $result = $query->fetchAll(PDO::FETCH_ASSOC);/*
-      $query = $db->prepare("SELECT name, price FROM sushi");
-      $query->execute();
-      $sushi = $query->fetchAll(PDO::FETCH_ASSOC);   
-      $i = 1;
-        $_SESSION['chicken'] = $_POST['1'] * $data['price'];
-        $_SESSION['garnaal'] = $_POST['2'] * $data['price'];
-        $_SESSION['dragon'] = $_POST['3'] * $data['price'];
-        $_SESSION['roll'] = $_POST['4'] * $data['price'];
-        $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
-        $_SESSION['spicy'] = $data['name'];
-        echo "  
-        <div class='card col-md-2 totalOrder'>
-        <h4>De bestelling:</h4> <br>";
-          echo "<p>" . $_SESSION['spicy'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
-          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['garnaal'] . "</p>";
-          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['dragon'] . "</p>";
-          echo "<p>" . $data['name'] . " " . $_POST[$i] . "x" .  " &#8364; " . $_SESSION['roll'] . "</p>";
-          echo "Totaal &#8364; " . $_SESSION['total'];
-          echo "</div>";
-          
-      */
+      $result = $query->fetchAll(PDO::FETCH_ASSOC);
       echo "  
       <div class='card col-md-2 totalOrder'>
       <h4>De bestelling:</h4> <br>";
+      $_SESSION['chickenAmount'] = $_POST['1']; 
+      $_SESSION['garnaalAmount'] = $_POST['2'];
+      $_SESSION['dragonAmount'] = $_POST['3'];
+      $_SESSION['rollAmount'] = $_POST['4'];
+      $_SESSION['chicken'] = $_POST['1'] * 4.50; 
+      $_SESSION['garnaal'] = $_POST['2'] *  4.50;
+      $_SESSION['dragon'] = $_POST['3'] *  4.50;
+      $_SESSION['roll'] = $_POST['4'] * $data['price'];
         foreach($result as &$data) {
-          $i = 2;
-          $_SESSION['chicken'] = $_POST['1'] * $data['price'];
-          $_SESSION['garnaal'] = $_POST['2'] * $data['price'];
-          $_SESSION['dragon'] = $_POST['3'] * $data['price'];
-          $_SESSION['roll'] = $_POST['4'] * $data['price'];
-        $_SESSION['total'] = $_SESSION['chicken'] + $_SESSION['garnaal'] + $_SESSION['dragon']  +$_SESSION['roll'];
-        $_SESSION['spicy'] = $data['name'];
-        echo "<p>" . $data['name'] . " " . $_POST[1] . "x" .  " &#8364; " . $_SESSION['chicken'] . "</p>";
-        $i = $i + 1;
-        }      
+          $_SESSION[$data['id']] = $_POST[$data['id']] * $data['price'];  
+          echo "<p>" . $data['name'] . " " . $_POST[$data['id']] . "x" .  " &#8364; " . $_SESSION[$data['id']]. "</p>";
+        }
+      $_SESSION['total'] = $_SESSION['1'] + $_SESSION['2'] + $_SESSION['3']  +$_SESSION['4'];      
       echo "<p>Totaal &#8364; " . $_SESSION['total'] . "</p>";
       echo "</div>";
       } else {
@@ -112,30 +91,18 @@
     echo "</form>";
     ?>
   <div class="card col-md-12">
-     <div class="card-body ">
-    
+     <div class="card-body "> 
     <input type="submit" class="form-control submit" id="telephone" name="volgende" value="Ga naar afrekenen">
     <?php
     $db = new PDO("mysql:host=localhost;dbname=zuzu", "root", "");
     if (isset($_POST['volgende'])) {
-      /*$id = 1;
-      $newAmount = 10 - 5;
-      $query = $db->prepare("UPDATE order SET $newAmount = :amount WHERE id =:id");
-      $query->bindParam("amount", $newAmount);
-      $query->bindParam("id", $id);
-      if($query->execute()) {
-        echo "De hoeveelheid is aangepast";
-      } else {
-        echo "Er is een fout opgetreden";
-        }*/
       $_SESSION['order'] = true;
+ 
       header("Location: total.php");
     }
     ?>
   </div>
 </div>
 </form>
-
-    
 </body>
 </html>
