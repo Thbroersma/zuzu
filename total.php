@@ -18,15 +18,18 @@
     <?php 
     if ($_SESSION['order'] == true) {
         echo "<h5 class='info'>Uw gegevens</h5>";
-        echo "<p class='info'>Naam: " . $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "</p>";
-        echo "<p class='info'>Adres: " . $_SESSION['address'] . "</p>";
-        echo "<p class='info'>Postcode + plaats: " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</p>";
-        
-        echo "<p class='info'>Spicy chicken " . $_SESSION['chickenAmount'] . " &#8364; " . $_SESSION['chicken'] . "</p>";
-        echo "<p class='info'>Spicy garnaal &#8364; " . $_SESSION['garnaal'] . "</p>";
-        echo "<p class='info'>Dragon roll &#8364; " . $_SESSION['dragon'] . "</p>";
-        echo "<p class='info'>Chicken roll &#8364; " .  $_SESSION['roll'] . "</p>";
-        echo "<p class='info'>Totaal &#8364; " .  $_SESSION['total'] . "</p>";
+        echo "<form method='post'>";
+        echo "<p class='info'>Naam:<i class='infocustomer'> " . $_SESSION['firstname'] . " " .   $_SESSION['lastname'] . "</i></p>";
+        echo "<p class='info'>Adres:<i class='infocustomer'> " . $_SESSION['address'] . "</i></p>";
+        echo "<p class='info'>Postcode + plaats:<i class='infocustomer'> " . $_SESSION['postcode'] . " " .   $_SESSION['city'] . "</i></p>";
+        echo "<h5 class='info'>Uw gerechten</h5>";
+        echo "<p class='info'>Spicy chicken <b class='priceinfo'>&#8364; " . $_SESSION['chicken'] . "</b></p>";
+        echo "<p class='info'>Spicy garnaal <b class='priceinfo'>&#8364; " . $_SESSION['garnaal'] . "</b></p>";
+        echo "<p class='info'>Dragon roll <b class='priceinfo'>&#8364; " . $_SESSION['dragon'] . "</b></p>";
+        echo "<p class='info'>Chicken roll <b class='priceinfo'>&#8364; " .  $_SESSION['roll'] . "</b></p>";
+        echo "<p class='info'>Totaal <b class='priceinfo'>&#8364; " .  $_SESSION['total'] . "</b></p>";
+        echo "<input type='submit' name='end' class='end' value='Plaats uw bestelling'>";
+        echo "</form>";
     } else {
         echo "<h5 class='info'>Uw gegevens</h5>";
         echo "<label class='info'>Naam: </label><label></label><br>";
@@ -37,10 +40,11 @@
         echo "<p class='info'>Spicy garnaal &#8364; </p>";
         echo "<p class='info'>Dragon roll &#8364; </p>";
         echo "<p class='info'>Chicken roll &#8364; </p>";
-        echo "<p class='info'>Totaal &#8364; </p>";
+        echo "<p class='info'><b>Totaal &#8364; </b></p>";
     }
-    
-
+    if (isset($_POST['end'])) {
+        echo "Uw bestelling is geplaats en we zullen hem zo snel mogelijk leveren!";
+    }
     ?>
 </div>
 </body>

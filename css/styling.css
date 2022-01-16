@@ -8,6 +8,10 @@ body {
     width: 23vw;
     height: 18vw;
 }
+.end {
+    margin-left: 35%;
+    margin-bottom: 3vh;
+}
 .form {
     margin-left: 25%;
 }
@@ -19,6 +23,10 @@ body {
 }
 .info {
     margin-left: 2vh;
+}
+.infocustomer {
+    float: right;
+    margin-right: 5%;
 }
 .left {
     
@@ -33,6 +41,10 @@ body {
 }
 .price {
     width: 20%;
+}
+.priceinfo {
+    float: right;
+    margin-right: 5%;
 }
 .right {
     float: right;
